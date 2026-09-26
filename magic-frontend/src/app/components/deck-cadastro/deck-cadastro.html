@@ -1,0 +1,27 @@
+<div class="cadastro-container">
+  <h2>{{ editandoId ? 'Editar Deck' : 'Cadastro de Decks' }}</h2>
+  <form (ngSubmit)="salvar()" #form="ngForm" class="form-box">
+    <div class="campo"><label>Nome:</label><input type="text" name="nome" [(ngModel)]="novoDeck.nome" required></div>
+    <div class="campo"><label>Modo de Jogo:</label><input type="text" name="modoJogo" [(ngModel)]="novoDeck.modoJogo" required></div>
+    <div class="campo"><label>Cores:</label><input type="text" name="cores" [(ngModel)]="novoDeck.cores" required></div>
+    <div class="campo"><label>Quantidade de Cartas:</label><input type="number" name="qntCartas" [(ngModel)]="novoDeck.qntCartas" required></div>
+    <div class="campo"><label class="checkbox-label"><input type="checkbox" name="valido" [(ngModel)]="novoDeck.valido"> Válido para Torneio</label></div>
+    <div class="botoes-form">
+      <button type="submit" class="btn btn-salvar" [disabled]="!form.valid">{{ editandoId ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" class="btn btn-cancelar" *ngIf="editandoId" (click)="cancelarEdicao()">Cancelar</button>
+    </div>
+  </form>
+
+  <ul class="lista-itens">
+    <li *ngFor="let deck of listaDecks" class="item-card">
+      <div class="item-info">
+        <h4>{{ deck.id }} - {{ deck.nome }} ({{ deck.modoJogo }})</h4>
+        <p>Cores: {{ deck.cores }} | {{ deck.qntCartas }} cartas | Válido: <strong>{{ deck.valido ? 'Sim' : 'Não' }}</strong></p>
+      </div>
+      <div class="item-acoes">
+        <button type="button" class="btn btn-editar" (click)="editar(deck)">Editar</button>
+        <button type="button" class="btn btn-excluir" (click)="apagar(deck.id)">Excluir</button>
+      </div>
+    </li>
+  </ul>
+</div>

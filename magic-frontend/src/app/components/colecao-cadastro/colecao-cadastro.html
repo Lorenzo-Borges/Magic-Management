@@ -1,0 +1,26 @@
+<div class="cadastro-container">
+  <h2>{{ editandoId ? 'Editar Coleção' : 'Cadastro de Coleções' }}</h2>
+  <form (ngSubmit)="salvar()" #form="ngForm" class="form-box">
+    <div class="campo"><label>Nome:</label><input type="text" name="nome" [(ngModel)]="novaColecao.nome" required></div>
+    <div class="campo"><label>Ano:</label><input type="number" name="ano" [(ngModel)]="novaColecao.ano" required></div>
+    <div class="campo"><label>Descrição:</label><input type="text" name="descricao" [(ngModel)]="novaColecao.descricao"></div>
+    <div class="campo"><label>Quantidade de Cartas:</label><input type="number" name="qntCartas" [(ngModel)]="novaColecao.qntCartas" required></div>
+    <div class="botoes-form">
+      <button type="submit" class="btn btn-salvar" [disabled]="!form.valid">{{ editandoId ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" class="btn btn-cancelar" *ngIf="editandoId" (click)="cancelarEdicao()">Cancelar</button>
+    </div>
+  </form>
+
+  <ul class="lista-itens">
+    <li *ngFor="let col of listaColecoes" class="item-card">
+      <div class="item-info">
+        <h4>{{ col.id }} - {{ col.nome }}</h4>
+        <p>Ano: {{ col.ano }} | <strong>{{ col.qntCartas }} cartas cadastradas</strong></p>
+      </div>
+      <div class="item-acoes">
+        <button type="button" class="btn btn-editar" (click)="editar(col)">Editar Coleção</button>
+        <button type="button" class="btn btn-excluir" (click)="apagar(col.id)">Excluir Coleção</button>
+      </div>
+    </li>
+  </ul>
+</div>

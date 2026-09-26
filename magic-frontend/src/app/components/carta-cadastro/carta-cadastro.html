@@ -1,0 +1,42 @@
+<div class="cadastro-container">
+  <h2>{{ editandoId ? 'Editar Carta' : 'Cadastro das Cartas' }}</h2>
+  <form (ngSubmit)="salvar()" #form="ngForm" class="form-box">
+    <div class="campo"><label>Nome:</label><input type="text" name="nome" [(ngModel)]="novaCarta.nome" required></div>
+    <div class="campo"><label>Tipo:</label><input type="text" name="tipo" [(ngModel)]="novaCarta.tipo" required></div>
+    <div class="campo">
+      <label>Cor:</label>
+      <select name="cor" [(ngModel)]="novaCarta.cor" required>
+        <option value="Branco">Branco</option><option value="Preto">Preto</option><option value="Azul">Azul</option><option value="Vermelho">Vermelho</option><option value="Verde">Verde</option>
+      </select>
+    </div>
+    <div class="campo"><label>Coleção:</label><input type="text" name="colecao" [(ngModel)]="novaCarta.colecao" required></div>
+    <div class="campo">
+      <label>Raridade:</label>
+      <select name="raridade" [(ngModel)]="novaCarta.raridade" required>
+        <option value="Comum">Comum</option><option value="Incomum">Incomum</option><option value="Rara">Rara</option><option value="Mítica">Mítica</option>
+      </select>
+    </div>
+    <div class="campo"><label class="checkbox-label"><input type="checkbox" name="lendaria" [(ngModel)]="novaCarta.lendaria"> Sim, é uma carta Lendária</label></div>
+    <div class="linha-dupla">
+      <div class="campo"><label>Ataque:</label><input type="number" name="ataque" [(ngModel)]="novaCarta.ataque" required></div>
+      <div class="campo"><label>Resistência:</label><input type="number" name="resistencia" [(ngModel)]="novaCarta.resistencia" required></div>
+    </div>
+    <div class="botoes-form">
+      <button type="submit" class="btn btn-salvar" [disabled]="!form.valid">{{ editandoId ? 'Atualizar' : 'Salvar' }}</button>
+      <button type="button" class="btn btn-cancelar" *ngIf="editandoId" (click)="cancelarEdicao()">Cancelar</button>
+    </div>
+  </form>
+
+  <ul class="lista-itens">
+    <li *ngFor="let carta of listaCartas" class="item-card">
+      <div class="item-info">
+        <h4>{{ carta.id }} - {{ carta.lendaria ? '👑 ' : '' }}{{ carta.nome }} ({{ carta.tipo }})</h4>
+        <p><strong>Coleção:</strong> {{ carta.colecao }} | <strong>Raridade:</strong> {{ carta.raridade }} | <strong>Cor:</strong> {{ carta.cor }}<br><strong>Poder:</strong> {{ carta.ataque }} / {{ carta.resistencia }}</p>
+      </div>
+      <div class="item-acoes">
+        <button type="button" class="btn btn-editar" (click)="editar(carta)">Editar</button>
+        <button type="button" class="btn btn-excluir" (click)="apagar(carta.id)">Excluir</button>
+      </div>
+    </li>
+  </ul>
+</div>
