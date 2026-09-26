@@ -18,7 +18,7 @@ public class Deck {
     @Column(length = 50, nullable = false)
     private String nome;
 
-    @Column(length = 10, nullable = true)
+    @Column(length = 30, nullable = true)
     private String cores;
 
     @Column(nullable = false)

@@ -1,6 +1,7 @@
 package com.proway.magic.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record DeckAtualizarDto(
@@ -10,12 +11,12 @@ public record DeckAtualizarDto(
         @NotBlank @Size(max=20)
         String modoJogo,
 
-        @NotBlank @Size(max=20)
+        @NotBlank @Size(max=30)
         String cores,
 
         Boolean valido,
 
-        @NotBlank
+        @NotNull
         Integer qntCartas
 ) {
 }

@@ -54,7 +54,8 @@ public class CartaService {
     public Carta apagar(int id){
         var carta = repository.findById(id).orElseThrow();
 
-        return repository.save(carta);
+        repository.delete(carta);
+        return carta;
     }
 
     public Carta obterPorId(int id){

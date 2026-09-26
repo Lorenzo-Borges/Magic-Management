@@ -42,7 +42,8 @@ public class TutorialService {
     public Tutorial apagar(int id){
         var tutorial = repository.findById(id).orElseThrow();
 
-        return repository.save(tutorial);
+        repository.delete(tutorial);
+        return tutorial;
     }
 
     public Tutorial obterPorId(int id){

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tutorial")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TutorialController {
         private final TutorialService service;
 

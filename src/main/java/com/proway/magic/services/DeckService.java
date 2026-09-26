@@ -49,7 +49,8 @@ public class DeckService {
     public Deck apagar(int id){
         var deck = repository.findById(id).orElseThrow();
 
-        return repository.save(deck);
+        repository.delete(deck);
+        return deck;
     }
 
     public Deck obterPorId(int id){

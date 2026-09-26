@@ -1,6 +1,7 @@
 package com.proway.magic.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 /*
@@ -22,10 +23,10 @@ public record CartaCriarDto (
         @NotBlank @Size(max=20)
         String raridade,
 
-        @NotBlank
+        @NotNull
         Integer ataque,
 
-        @NotBlank
+        @NotNull
         Integer resistencia,
 
         Boolean lendaria

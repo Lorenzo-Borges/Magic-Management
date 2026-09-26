@@ -46,7 +46,8 @@ public class ColecaoService {
     public Colecao apagar(int id){
         var colecao = repository.findById(id).orElseThrow();
 
-        return repository.save(colecao);
+        repository.delete(colecao);
+        return colecao;
     }
 
     public Colecao obterPorId(int id){
